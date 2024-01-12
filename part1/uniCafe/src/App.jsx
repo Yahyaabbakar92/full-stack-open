@@ -11,7 +11,6 @@ const App = () => {
     bad: 0,
   })
 
-  // console.log(feedback.bad)
   const handleGood = () => {
     setFeedback({ ...feedback, good: feedback.good + 1 })
   }
@@ -38,12 +37,14 @@ const App = () => {
       {(total === 0 || average === isNaN) ? 
       <p>No feedback given</p> :
       <>
-      <Statistics text={"Good"} feedback={feedback.good} />
-      <Statistics text={"Neutral"} feedback={feedback.neutral} />
-      <Statistics text={"Bad"} feedback={feedback.bad} />
-      <Statistics text={"Total"} feedback={total} />
-      <Statistics text={"Average Score"} feedback={average} />
-      <Statistics text={"Positive Feedback"} feedback={positive} />
+      <Statistics props={{
+        good: feedback.good,
+        neutral: feedback.neutral,
+        bad: feedback.bad,
+        total: total,
+        average: average,
+        positive: positive,
+      }} />
       </>
       }
     </div>
