@@ -1,4 +1,4 @@
-const Display = ({ text, feedback }) => {
+const Statistics = ({ text, feedback }) => {
   return (
     <div>
         <p>{text}: {feedback}</p>
@@ -6,4 +6,4 @@ const Display = ({ text, feedback }) => {
   )
 }
 
-export default Display
+export default Statistics
