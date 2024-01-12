@@ -36,7 +36,6 @@ const App = () => {
       <h1>Statistics</h1>
       {(total === 0 || average === isNaN) ? 
       <p>No feedback given</p> :
-      <>
       <Statistics props={{
         good: feedback.good,
         neutral: feedback.neutral,
@@ -45,7 +44,6 @@ const App = () => {
         average: average,
         positive: positive,
       }} />
-      </>
       }
     </div>
   )
