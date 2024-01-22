@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Button from '../Button'
 import Header from '../Header'
+import Anecdote from '../Anecdote'
 
 const App = () => {
   const anecdotes = [
@@ -34,14 +35,12 @@ const App = () => {
   return (
     <div>
       <Header text="Anecdote of the day" />
-      <p>{anecdotes[selected]}</p>
-      <p>Has {votes[selected]} votes</p>
+      <Anecdote anecdote={anecdotes[selected]} numberOfVotes={votes[selected]} />
       <br />
-      <Button text="Vote1" onClick={handleVote} />
-      <Button text="Next Anecdote1" onClick={handleRandomAnecdote} />
+      <Button text="Vote" onClick={handleVote} />
+      <Button text="Next Anecdote" onClick={handleRandomAnecdote} />
       <Header text="Anecdote with the most votes" />
-      <p>{anecdotes[mostVotes]}</p>
-      <p>Has {votes[mostVotes]} votes</p>
+      <Anecdote anecdote={anecdotes[mostVotes]} numberOfVotes={votes[mostVotes]} />
     </div>
   )
 }
