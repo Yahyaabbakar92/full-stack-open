@@ -46,7 +46,7 @@ const App = () => {
     }
   ]
 
-  return <Course course={courses} />
+  return <Course courses={courses} />
 }
 
 export default App

@@ -1,11 +1,11 @@
 import Header from './Header'
 import Content from './Content'
 
-const Course = ({ course }) => {
+const Course = ({ courses }) => {
     return (
     <div>
         <Header />
-        <Content parts={course} />
+        <Content courses={courses} />
     </div>
     )
 }
