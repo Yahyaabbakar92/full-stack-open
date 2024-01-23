@@ -1,3 +1,5 @@
+import Total from './Total'
+
 const Part = ({ courses }) => {
     return (
         <>
@@ -5,8 +7,11 @@ const Part = ({ courses }) => {
                 <div key={id}>
                 <h2>{name}</h2>
                 {parts.map(({ id, name, exercises }) => (
-                    <p key={id}>{name} {exercises}</p>
+                    <div key={id}>
+                    <p >{name} {exercises}</p>
+                    </div>
                 ))}
+                <Total parts={parts} />
                 </div>
             ))}
         </>
