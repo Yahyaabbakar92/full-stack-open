@@ -1,14 +1,11 @@
 import Header from './Header'
-// import Content from './Content'
-// import Total from './Total'
+import Content from './Content'
 
 const Course = ({ course }) => {
-    console.log(course);
     return (
     <div>
         <Header />
-        {/* <Content parts={course.parts} /> */}
-        {/* <Total parts={course.parts} /> */}
+        <Content parts={course} />
     </div>
     )
 }
