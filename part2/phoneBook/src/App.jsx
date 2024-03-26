@@ -1,24 +1,36 @@
 import { useState } from 'react';
 import Person from './components/Person';
+import Filter from './components/Filter';
+import PersonForm from './components/PersonForm';
 
 const App = () => {
-	const [persons, setPersons] = useState([{ name: 'Arto Hellas' }]);
+	const initialPersons = [
+		{ name: 'Arto Hellas', number: '040-123456', id: 1 },
+		{ name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+		{ name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+		{ name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 },
+	];
+	const [persons, setPersons] = useState(initialPersons);
 	const [newName, setNewName] = useState('');
 	const [newNumber, setNewNumber] = useState('');
+	const [filter, setFilter] = useState('');
 
-	const addPersons = (event) => {
-		event.preventDefault();
-		if (!persons.some((person) => person.name === newName)) {
+	const createPerson = (name, number) => {
+		if (!persons.some((person) => person.name === name)) {
 			const personObject = {
-				name: newName,
-				number: newNumber,
+				name,
+				number,
 			};
 			setPersons([...persons, personObject]);
 			setNewName('');
 			setNewNumber('');
 		} else {
-			alert(`${newName} is already added to phone book`);
+			alert(`${name} is already added to phone book`);
 		}
+	};
+	const addPersons = (event) => {
+		event.preventDefault();
+		createPerson(newName, newNumber);
 	};
 
 	const handlePersonChange = (event) => {
@@ -30,25 +42,25 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phone Book</h2>
-			<form onSubmit={addPersons}>
-				<div>
-					name:{' '}
-					<input type='text' value={newName} onChange={handlePersonChange} />
-				</div>
-				<div>
-					number:{' '}
-					<input type='tel' value={newNumber} onChange={handleNumberChange} />
-				</div>
-				<div>
-					<button type='submit' aria-label='Add new person'>
-						add
-					</button>
-				</div>
-			</form>
+			<Filter filter={filter} setFilter={setFilter} />
+			<h2>Add a new</h2>
+			<PersonForm
+				addPersons={addPersons}
+				newName={newName}
+				handlePersonChange={handlePersonChange}
+				newNumber={newNumber}
+				handleNumberChange={handleNumberChange}
+			/>
 			<h2>Numbers</h2>
-			{persons.map((person, i) => (
-				<Person key={i} person={person} />
-			))}
+			{persons
+				.filter(
+					(e) =>
+						e.name.toLowerCase().includes(filter.toLowerCase()) ||
+						e.number.includes(filter)
+				)
+				.map((person, i) => (
+					<Person key={i} person={person} />
+				))}
 			<div>
 				debug: {newName} {newNumber}
 			</div>
